@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Muffled Regular Newt</title>
+    <meta property="og:title" content="Muffled Regular Newt" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html { line-height: 1.15; } 
+      body { margin: 0; }
+      * { box-sizing: border-box; border-width: 0; border-style: solid; -webkit-font-smoothing: antialiased; }
+      /* ... остальные стили ... */
+    </style>
+    
+    <!-- Подключаем Firebase для работы с базой данных -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <style>
+        /* Стили для формы */
+        .form-container {
+            position: relative;
+            width: 1312px;
+            height: 363px;
+        }
+        
+        .form-input {
+            position: absolute;
+            background-color: var(--dl-color-theme-neutral-light);
+            border-radius: 23px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: var(--dl-color-theme-neutral-dark);
+        }
+        
+        #nameInput {
+            top: 31px;
+            left: 667px;
+            width: 313px;
+            height: 47px;
+        }
+        
+        #phoneInput {
+            top: 31px;
+            left: 1000px;
+            width: 311px;
+            height: 47px;
+        }
+        
+        #emailInput {
+            top: 123px;
+            left: 667px;
+            width: 645px;
+            height: 47px;
+        }
+        
+        #messageInput {
+            top: 237px;
+            left: 667px;
+            width: 645px;
+            height: 126px;
+            border-radius: 37px;
+            resize: none;
+        }
+        
+        .form-label {
+            position: absolute;
+            color: rgba(19, 25, 39, 1);
+            font-size: 22px;
+            font-weight: 700;
+            font-family: Inter;
+        }
+        
+        #nameLabel {
+            top: 0;
+            left: 667px;
+        }
+        
+        #phoneLabel {
+            top: 0;
+            left: 1000px;
+        }
+        
+        #emailLabel {
+            top: 89px;
+            left: 667px;
+        }
+        
+        #messageLabel {
+            top: 204px;
+            left: 667px;
+        }
+        
+        .form-title {
+            position: absolute;
+            top: 6px;
+            left: 1px;
+            color: rgba(19, 25, 38, 1);
+            font-size: 48px;
+            font-weight: 700;
+            font-family: Inter;
+            width: 645px;
+        }
+        
+        .form-subtitle {
+            position: absolute;
+            top: 68px;
+            left: 0;
+            color: rgba(19, 25, 38, 1);
+            font-size: 32px;
+            font-weight: 700;
+            font-family: Inter;
+            width: 550px;
+        }
+        
+        .submit-btn {
+            position: absolute;
+            top: 400px;
+            left: 667px;
+            width: 200px;
+            height: 50px;
+            background-color: var(--dl-color-theme-primary1);
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dl-color-theme-primary2);
+        }
+    </style>
+    
+    <script>
+        // Инициализация Firebase
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        // Функция для отправки данных формы
+        function submitForm() {
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('messageInput').value;
+            
+            // Сохраняем данные в Firebase
+            database.ref('requests').push({
+                name: name,
+                phone: phone,
+                email: email,
+                message: message,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            }).then(() => {
+                alert('Ваша заявка успешно отправлена!');
+                // Очищаем форму
+                document.getElementById('contactForm').reset();
+            }).catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке заявки.');
+            });
+        }
+        
+        // Функция для обработки клика по кнопке телефона
+        function callPhone() {
+            window.location.href = "tel:+7XXXXXXXXXX";
+        }
+    </script>
+</head>
+<body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+        <link href="./index.css" rel="stylesheet" />
+
+        <div class="home-container">
+            <div class="home-frame6">
+                <div class="home-frame1">
+                    <div class="home-frame4">
+                        <img
+                            alt="image7813"
+                            src="public/external/1.png"
+                            class="home-image"
+                        />
+                        <span class="home-text10">
+                            Основано на многолетнем опыте, построено на непоколебимом качестве.
+                        </span>
+                        <span class="home-text11">
+                            Ольса лес: весь спектр древесины для вашего бизнеса
+                        </span>
+                        <span class="home-text12">Olsa les</span>
+                        <span class="home-text13" onclick="callPhone()" style="cursor:pointer;">+7 XXX XXXXXX</span>
+                    </div>
+                    <div class="home-frame3">
+                        <img
+                            alt="Rectangle2526"
+                            src="public/external/rectangle2526-b4j-700h.png"
+                            class="home-rectangle2"
+                        />
+                        <div class="form-container">
+                            <!-- Модифицированная форма -->
+                            <form id="contactForm">
+                                <div class="form-title">Оставьте заявку в 1 клик</div>
+                                <div class="form-subtitle">И мы свяжемся с вами как можно скорее</div>
+                                
+                                <label for="nameInput" class="form-label" id="nameLabel">Имя</label>
+                                <input type="text" id="nameInput" class="form-input" required />
+                                
+                                <label for="phoneInput" class="form-label" id="phoneLabel">Номер</label>
+                                <input type="tel" id="phoneInput" class="form-input" required />
+                                
+                                <label for="emailInput" class="form-label" id="emailLabel">Почта</label>
+                                <input type="email" id="emailInput" class="form-input" required />
+                                
+                                <label for="messageInput" class="form-label" id="messageLabel">Заявка (необязательно)</label>
+                                <textarea id="messageInput" class="form-input"></textarea>
+                                
+                                <button type="button" onclick="submitForm()" class="submit-btn">
+                                    Отправить заявку
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <img
+                        alt="Frame754"
+                        src="public/external/frame754-uj15.svg"
+                        class="home-frame7"
+                    />
+                    <div class="home-frame5">
+                        <img
+                            alt="Rectangle85596"
+                            src="public/external/rectangle85596-mdb-400h.png"
+                            class="home-rectangle8"
+                        />
+                        <span class="home-text22">Olsa les</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
